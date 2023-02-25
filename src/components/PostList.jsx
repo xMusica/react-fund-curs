@@ -4,18 +4,14 @@ import MySelect from "./UI/select/MySelect";
 
 const PostList = ({posts, title, remove}) => {
 
-    const availableTitle = useMemo(() => {
-
-        if (posts.length === 0) {
-            return  "Записей нет."
-        } else {
-            return title;
-        }
-    }, [posts]);
+    let availableTitle = title;
+    if (!posts.length) {
+        return <h1>Посты не найдены</h1>
+    }
 
     return (
         <div>
-            <h1>{availableTitle}</h1>
+            <h1>{title}</h1>
             {posts.map((post, index) =>
                 <PostItem remove={remove} number={index + 1} post={post} key={post.id}></PostItem>
             )}
